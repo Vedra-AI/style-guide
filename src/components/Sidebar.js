@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import logo from '../logo.svg';
 import '../App.css';
 import SidebarLinks from './SidebarLinks';
-import { updateSidebar } from '../actions/sidebar-actions';
 
 class Sidebar extends Component {
   constructor() {
@@ -20,7 +17,6 @@ class Sidebar extends Component {
       overview: false
     };
     this.toggle = this.toggle.bind(this);
-    this.onUpdateSidebar = this.onUpdateSidebar.bind(this);
   }
 
   setAllStates() {
@@ -40,10 +36,6 @@ class Sidebar extends Component {
     this.toggle(name);
   }
 
-  onUpdateSidebar() {
-    this.props.onUpdateSidebar("Buttons");
-  }
-
   render() {
     const {design} = this.state;
     const {components} = this.state;
@@ -59,26 +51,9 @@ class Sidebar extends Component {
           <SidebarLinks items={this.state.designItems} name="design" toggle={this.toggle} show={design} current={this.currentPath} />
           <SidebarLinks items={this.state.componentItems} name="components" toggle={this.toggle} show={components} current={this.currentPath} />
         </aside>
-        <div onClick={this.onUpdateSidebar}>Update Sidebar</div>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch, props) => {
-  return bindActionCreators({
-      onUpdateSidebar: updateSidebar
-  }, dispatch);
-};
-
-const mapStateToProps = (state, props) => {
-  return {
-    link: state.link,
-  }
-};
-
-// const mergeProps = (propsFromState, propsFromDispatch, ownProps) => {
-//   return {};
-// }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default Sidebar;

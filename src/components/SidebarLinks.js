@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateSidebar } from '../actions/sidebar-actions';
 
 class SidebarLinks extends Component {
   constructor() {
@@ -18,6 +21,7 @@ class SidebarLinks extends Component {
     }
     let currentActive = document.getElementById(id);
     currentActive.classList.add("is-active");
+    this.props.onUpdateSidebar(id);
   }
 
   toggle(name) {
@@ -64,4 +68,19 @@ class SidebarLinks extends Component {
   }
 }
 
-export default SidebarLinks;
+const mapDispatchToProps = (dispatch, props) => {
+  return bindActionCreators({
+      onUpdateSidebar: updateSidebar
+  }, dispatch);
+};
+
+const mapStateToProps = (state, props) => {
+  return {
+    link: state.link,
+  }
+};
+
+// const mergeProps = (propsFromState, propsFromDispatch, ownProps) => {
+//   return {};
+// }
+export default connect(mapStateToProps, mapDispatchToProps)(SidebarLinks);
