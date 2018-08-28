@@ -1,0 +1,48 @@
+#root {
+  height: 100vh;
+}
+
+#app {
+  height: 100vh;
+}
+
+.app-logo {
+  margin: 35px 0;
+  display: block;
+}
+
+.app-logo img {
+  height: 40px;
+}
+
+.app-logo p {
+  text-decoration: none;
+  color: #4a4a4a;
+  padding-left: 20px;
+}
+
+.sidebar {
+  border-right: 1px solid #e0e6ed;
+  padding-top: 80px;
+  height: 80%;
+}
+
+.main {
+  padding-top: 120px;
+  padding-left: 60px;
+  padding-right: 60px;
+  height: 80%;
+}
+
+.is-active a {
+  color: powderblue;
+}
+
+.custom-footer {
+  border-top: 1px solid #e0e6ed;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 20%;
+}
