@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateSidebar } from '../actions/sidebar-actions';
+import { updateSidebar } from '../actions/sidebar';
+import { homeSelector } from '../reducers';
 
 class SidebarLinks extends Component {
   constructor() {
@@ -44,10 +45,12 @@ class SidebarLinks extends Component {
 
   componentDidMount() {
     this.findCurrentPath();
+    const home_selector = this.props.home_selector;
+    console.log("home_selector   ", home_selector);
   }
 
   render() {
-    const {currentPath} = this.state;
+    const { currentPath } = this.state;
     let items;
     if(this.props.items && this.props.show) {
       items = this.props.items.map((item, index) =>
@@ -75,8 +78,11 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 const mapStateToProps = (state, props) => {
+  const link = state.sidebar.link;
+  const home_selector = homeSelector(state.home.route);
   return {
-    link: state.link,
+    link,
+    home_selector
   }
 };
 

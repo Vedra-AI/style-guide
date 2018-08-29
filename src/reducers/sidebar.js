@@ -1,4 +1,4 @@
-import { UPDATE_SIDEBAR } from '../actions/sidebar-actions';
+import { UPDATE_SIDEBAR } from '../actions/sidebar';
 
 
 const sidebarReducer = (state, {type, payload}) => {
@@ -10,4 +10,8 @@ const sidebarReducer = (state, {type, payload}) => {
   }
 }
 
+
+export const sidebarSelector = (state) => {
+  return state + '_selector';
+}
 export default sidebarReducer;
